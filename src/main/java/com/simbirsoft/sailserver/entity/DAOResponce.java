@@ -1,7 +1,9 @@
 package com.simbirsoft.sailserver.entity;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class DAOResponce {
 
@@ -9,7 +11,9 @@ public class DAOResponce {
 
     private String value;
 
-    private List<String> orderlist = new ArrayList<String>();
+    private List<String> orderlist = new ArrayList<>();
+
+    private Map<String, String> content = new HashMap<>();
 
     public String getName() {
         return name;
@@ -33,5 +37,13 @@ public class DAOResponce {
 
     public void setOrderlist(List<String> orderlist) {
         this.orderlist = orderlist;
+    }
+
+    public Map<String, String> getContent() {
+        return content;
+    }
+
+    public void setContent(Map<String, String> content) {
+        this.content = content;
     }
 }
