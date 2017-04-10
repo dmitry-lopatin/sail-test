@@ -13,13 +13,10 @@ import com.simbirsoft.sailserver.dao.rowmapper.OrderRowMapper;
 import com.simbirsoft.sailserver.dao.rowmapper.ProductRowMapper;
 import com.simbirsoft.sailserver.entity.Order;
 import com.simbirsoft.sailserver.entity.Product;
-import com.simbirsoft.sailserver.entity.ProductCategory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
-@Component("postgresDAO")
 @Repository
 public class PostgresDAO {
 

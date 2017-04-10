@@ -13,15 +13,11 @@
     <context:component-scan base-package="com.simbirsoft.sailserver"/>
     <mvc:annotation-driven/>
     <mvc:resources mapping="/resources/**" location="/resources/"/>
-    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <property name="prefix" value="/WEB-INF/views/"/>
-        <property name="suffix" value=".jsp"/>
-    </bean>
 
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="org.postgresql.Driver"/>
         <property name="url" value="jdbc:postgresql://localhost:5432/saildb"/>
         <property name="username" value="postgres"/>
-        <property name="password" value="root"/>
+        <property name="password" value="postgres"/>
     </bean>
 </beans>
