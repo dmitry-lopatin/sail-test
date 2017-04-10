@@ -55,19 +55,19 @@ public class TestController {
 
     @RequestMapping(value = "/getCategoriesByAddressList", method = RequestMethod.GET, produces = "application/json")
     @ResponseBody
-    public List<String> getCategoriesByAddressList(String[] addressList) {
-        List<String> response = postgresDAO.getCategoriesByAddressList(Arrays.asList(addressList));
+    public List<String> getCategoriesByAddressList(String[] addresses) {
+        List<String> response = postgresDAO.getCategoriesByAddressList(Arrays.asList(addresses));
         return response;
     }
 
     @RequestMapping(value = "/getAddressesByCategoryList", method = RequestMethod.GET, produces = "application/json")
     @ResponseBody
-    public List<String> getAddressesByCategoryList(String[] categoryList) {
-        List<String> response = postgresDAO.getAddressesByCategoryList(Arrays.asList(categoryList));
+    public List<String> getAddressesByCategoryList(String[] categories) {
+        List<String> response = postgresDAO.getAddressesByCategoryList(Arrays.asList(categories));
         return response;
     }
 
-    @RequestMapping(value = "/getSumByAddressListAndCategoryList", method = RequestMethod.GET, produces = "application/json")
+    @RequestMapping(value = "/getSumByAddressesAndCategories", method = RequestMethod.GET, produces = "application/json")
     @ResponseBody
     public Double getSumByAddressListAndCategoryList(String[] addresses, String[] categories) {
         List<String> addressList = addresses == null ? getAllAddresses() : Arrays.asList(addresses);
