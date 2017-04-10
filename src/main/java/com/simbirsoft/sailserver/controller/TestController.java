@@ -53,17 +53,17 @@ public class TestController {
         return response;
     }
 
-    @RequestMapping(value = "/getCategoriesByAddresses", method = RequestMethod.GET, produces = "application/json")
+    @RequestMapping(value = "/getCategoriesByAddressList", method = RequestMethod.GET, produces = "application/json")
     @ResponseBody
-    public List<String> getCategoriesByAddressList(String[] addressList) {
-        List<String> response = postgresDAO.getCategoriesByAddressList(Arrays.asList(addressList));
+    public List<String> getCategoriesByAddressList(String[] addresses) {
+        List<String> response = postgresDAO.getCategoriesByAddressList(Arrays.asList(addresses));
         return response;
     }
 
-    @RequestMapping(value = "/getAddressesByCategories", method = RequestMethod.GET, produces = "application/json")
+    @RequestMapping(value = "/getAddressesByCategoryList", method = RequestMethod.GET, produces = "application/json")
     @ResponseBody
-    public List<String> getAddressesByCategoryList(String[] categoryList) {
-        List<String> response = postgresDAO.getAddressesByCategoryList(Arrays.asList(categoryList));
+    public List<String> getAddressesByCategoryList(String[] categories) {
+        List<String> response = postgresDAO.getAddressesByCategoryList(Arrays.asList(categories));
         return response;
     }
 

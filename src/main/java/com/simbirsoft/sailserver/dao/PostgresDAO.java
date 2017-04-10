@@ -8,11 +8,11 @@ import java.util.Set;
 import javax.annotation.PostConstruct;
 import javax.sql.DataSource;
 
-import com.simbirsoft.sailserver.dao.rowmapper.CategoryRowMapper;
 import com.simbirsoft.sailserver.dao.rowmapper.OrderRowMapper;
 import com.simbirsoft.sailserver.dao.rowmapper.ProductRowMapper;
 import com.simbirsoft.sailserver.entity.Order;
 import com.simbirsoft.sailserver.entity.Product;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
