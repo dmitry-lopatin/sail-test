@@ -18,7 +18,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class PostgresDAO {
+public class PostgresDAO implements GroceryStoreDao {
 
     private JdbcTemplate jdbcTemplate;
 
@@ -54,37 +54,37 @@ public class PostgresDAO {
                 "JOIN public.orderdetail od " +
                 "ON p.productid = od.productid " +
                 "JOIN public.order o " +
-                "ON od.orderid = o.orderid WHERE o.shopaddress ='"+address+"'";
+                "ON od.orderid = o.orderid WHERE o.shopaddress ='" + address + "'";
         return jdbcTemplate.queryForList(sql, String.class);
     }
 
     public List<String> getCategoriesByAddressList(List<String> addressList) {
         Set<String> resultSet = new HashSet<>();
         addressList.stream().forEach(address ->
-                    resultSet.addAll(jdbcTemplate.queryForList(
-                            "SELECT DISTINCT c.categoryname from public.category c\n" +
-                                    "JOIN public.product p " +
-                                    "ON c.categoryid = p.categoryid " +
-                                    "JOIN public.orderdetail od " +
-                                    "ON p.productid = od.productid " +
-                                    "JOIN public.order o " +
-                                    "ON od.orderid = o.orderid WHERE o.shopaddress ='" + address + "'", String.class))
-            );
+                resultSet.addAll(jdbcTemplate.queryForList(
+                        "SELECT DISTINCT c.categoryname from public.category c\n" +
+                                "JOIN public.product p " +
+                                "ON c.categoryid = p.categoryid " +
+                                "JOIN public.orderdetail od " +
+                                "ON p.productid = od.productid " +
+                                "JOIN public.order o " +
+                                "ON od.orderid = o.orderid WHERE o.shopaddress ='" + address + "'", String.class))
+        );
         return new ArrayList<>(resultSet);
     }
 
     public List<String> getAddressesByCategoryList(List<String> categoryList) {
         Set<String> resultSet = new HashSet<>();
         categoryList.stream().forEach(category ->
-                    resultSet.addAll(jdbcTemplate.queryForList(
-                            "SELECT DISTINCT o.shopaddress FROM public.order o\n" +
-                                    "JOIN public.orderdetail od \n" +
-                                    "ON o.orderid = od.orderid\n" +
-                                    "JOIN public.product p\n" +
-                                    "ON od.productid = p.productid\n" +
-                                    "JOIN public.category c\n" +
-                                    "ON p.categoryid = c.categoryid WHERE c.categoryname = '"+category+"'", String.class))
-                    );
+                resultSet.addAll(jdbcTemplate.queryForList(
+                        "SELECT DISTINCT o.shopaddress FROM public.order o\n" +
+                                "JOIN public.orderdetail od \n" +
+                                "ON o.orderid = od.orderid\n" +
+                                "JOIN public.product p\n" +
+                                "ON od.productid = p.productid\n" +
+                                "JOIN public.category c\n" +
+                                "ON p.categoryid = c.categoryid WHERE c.categoryname = '" + category + "'", String.class))
+        );
         return new ArrayList<>(resultSet);
     }
 
@@ -92,16 +92,16 @@ public class PostgresDAO {
         double sum = 0;
         List<Double> partialSumList = new ArrayList<>();
         addressList.stream().forEach(address ->
-            categoryList.stream().forEach(category ->
-                    partialSumList.add(jdbcTemplate.queryForObject(
-                            "SELECT sum(od.amount * p.price) subprice FROM public.orderdetail od " +
-                                    "JOIN public.product p " +
-                                    "ON od.productid = p.productid " +
-                                    "JOIN public.order o " +
-                                    "ON od.orderid = o.orderid " +
-                                    "JOIN public.category c " +
-                                    "ON p.categoryid = c.categoryid WHERE o.shopaddress = '"+address+"'AND c.categoryname = '"+category+"'", Double.class))
-                    )
+                categoryList.stream().forEach(category ->
+                        partialSumList.add(jdbcTemplate.queryForObject(
+                                "SELECT sum(od.amount * p.price) subprice FROM public.orderdetail od " +
+                                        "JOIN public.product p " +
+                                        "ON od.productid = p.productid " +
+                                        "JOIN public.order o " +
+                                        "ON od.orderid = o.orderid " +
+                                        "JOIN public.category c " +
+                                        "ON p.categoryid = c.categoryid WHERE o.shopaddress = '" + address + "'AND c.categoryname = '" + category + "'", Double.class))
+                )
         );
         for (Object d : partialSumList) {
             if (d != null) {

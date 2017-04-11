@@ -1,6 +1,7 @@
 package com.simbirsoft.sailserver.dao.rowmapper;
 
 import com.simbirsoft.sailserver.entity.Product;
+
 import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;

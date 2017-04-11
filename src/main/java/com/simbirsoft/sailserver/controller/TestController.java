@@ -22,30 +22,34 @@ public class TestController {
     @Autowired
     PostgresDAO postgresDAO;
 
-    @RequestMapping(value = "/getAllCategories" , method = RequestMethod.GET, produces = "application/json")
+    @RequestMapping(value = "/getAllCategories", method = RequestMethod.GET, produces = "application/json")
     @ResponseBody
     public List<String> getAllCategories() {
         List<String> response = postgresDAO.getAllCategories();
         return response;
     }
+
     @RequestMapping(value = "/getAllProducts", method = RequestMethod.GET, produces = "application/json")
     @ResponseBody
     public List<Product> getAllProducts() {
         List<Product> response = postgresDAO.getAllProducts();
         return response;
     }
+
     @RequestMapping(value = "/getAllOrders", method = RequestMethod.GET, produces = "application/json")
     @ResponseBody
     public List<Order> getAllOrders() {
         List<Order> response = postgresDAO.getAllOrders();
         return response;
     }
+
     @RequestMapping(value = "/getAllAddresses", method = RequestMethod.GET, produces = "application/json")
     @ResponseBody
     public List<String> getAllAddresses() {
         List<String> response = postgresDAO.getAllAddresses();
         return response;
     }
+
     @RequestMapping(value = "/getCategoriesByAddress", method = RequestMethod.GET, produces = "application/json")
     @ResponseBody
     public List<String> getCategoriesByAddress(String address) {
