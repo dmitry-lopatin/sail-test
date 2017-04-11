@@ -38,13 +38,6 @@ public class TestController {
         return response;
     }
 
-    @RequestMapping(value = "/getAddressesByCategoryList", method = RequestMethod.GET, produces = "application/json")
-    @ResponseBody
-    public List<String> getAddressesByCategoryList(String[] categories) {
-        List<String> response = postgresDAO.getAddressesByCategoryList(Arrays.asList(categories));
-        return response;
-    }
-
     @RequestMapping(value = "/getSumByAddressesAndCategories", method = RequestMethod.GET, produces = "application/json")
     @ResponseBody
     public Double getSumByAddressListAndCategoryList(String[] addresses, String[] categories) {
