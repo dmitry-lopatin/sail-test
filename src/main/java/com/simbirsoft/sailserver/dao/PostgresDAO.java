@@ -8,11 +8,6 @@ import java.util.Set;
 import javax.annotation.PostConstruct;
 import javax.sql.DataSource;
 
-import com.simbirsoft.sailserver.dao.rowmapper.OrderRowMapper;
-import com.simbirsoft.sailserver.dao.rowmapper.ProductRowMapper;
-import com.simbirsoft.sailserver.entity.Order;
-import com.simbirsoft.sailserver.entity.Product;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -32,29 +27,8 @@ public class PostgresDAO implements GroceryStoreDao {
         return jdbcTemplate.queryForList(sql, String.class);
     }
 
-    public List<Product> getAllProducts() {
-        String sql = "SELECT * FROM public.product";
-        return jdbcTemplate.query(sql, new ProductRowMapper());
-    }
-
-    public List<Order> getAllOrders() {
-        String sql = "SELECT * FROM public.order";
-        return jdbcTemplate.query(sql, new OrderRowMapper());
-    }
-
     public List<String> getAllAddresses() {
         String sql = "SELECT DISTINCT shopaddress FROM public.order";
-        return jdbcTemplate.queryForList(sql, String.class);
-    }
-
-    public List<String> getCategoriesByAddress(String address) {
-        String sql = "SELECT DISTINCT c.categoryname from public.category c\n" +
-                "JOIN public.product p " +
-                "ON c.categoryid = p.categoryid " +
-                "JOIN public.orderdetail od " +
-                "ON p.productid = od.productid " +
-                "JOIN public.order o " +
-                "ON od.orderid = o.orderid WHERE o.shopaddress ='" + address + "'";
         return jdbcTemplate.queryForList(sql, String.class);
     }
 

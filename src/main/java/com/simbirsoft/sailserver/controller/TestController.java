@@ -1,10 +1,5 @@
 package com.simbirsoft.sailserver.controller;
 
-import com.simbirsoft.sailserver.entity.Order;
-import com.simbirsoft.sailserver.entity.Product;
-import com.simbirsoft.sailserver.entity.ProductCategory;
-
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -29,31 +24,10 @@ public class TestController {
         return response;
     }
 
-    @RequestMapping(value = "/getAllProducts", method = RequestMethod.GET, produces = "application/json")
-    @ResponseBody
-    public List<Product> getAllProducts() {
-        List<Product> response = postgresDAO.getAllProducts();
-        return response;
-    }
-
-    @RequestMapping(value = "/getAllOrders", method = RequestMethod.GET, produces = "application/json")
-    @ResponseBody
-    public List<Order> getAllOrders() {
-        List<Order> response = postgresDAO.getAllOrders();
-        return response;
-    }
-
     @RequestMapping(value = "/getAllAddresses", method = RequestMethod.GET, produces = "application/json")
     @ResponseBody
     public List<String> getAllAddresses() {
         List<String> response = postgresDAO.getAllAddresses();
-        return response;
-    }
-
-    @RequestMapping(value = "/getCategoriesByAddress", method = RequestMethod.GET, produces = "application/json")
-    @ResponseBody
-    public List<String> getCategoriesByAddress(String address) {
-        List<String> response = postgresDAO.getCategoriesByAddress(address);
         return response;
     }
 
