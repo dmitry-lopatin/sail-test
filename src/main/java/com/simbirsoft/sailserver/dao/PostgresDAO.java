@@ -34,7 +34,7 @@ public class PostgresDAO implements GroceryStoreDao {
 
     public List<String> getCategoriesByAddressList(List<String> addressList) {
         Set<String> resultSet = new HashSet<>();
-        addressList.stream().forEach(address ->
+        addressList.forEach(address ->
                 resultSet.addAll(jdbcTemplate.queryForList(
                         "SELECT DISTINCT c.categoryname from public.category c\n" +
                                 "JOIN public.product p " +
@@ -47,26 +47,11 @@ public class PostgresDAO implements GroceryStoreDao {
         return new ArrayList<>(resultSet);
     }
 
-    public List<String> getAddressesByCategoryList(List<String> categoryList) {
-        Set<String> resultSet = new HashSet<>();
-        categoryList.stream().forEach(category ->
-                resultSet.addAll(jdbcTemplate.queryForList(
-                        "SELECT DISTINCT o.shopaddress FROM public.order o\n" +
-                                "JOIN public.orderdetail od \n" +
-                                "ON o.orderid = od.orderid\n" +
-                                "JOIN public.product p\n" +
-                                "ON od.productid = p.productid\n" +
-                                "JOIN public.category c\n" +
-                                "ON p.categoryid = c.categoryid WHERE c.categoryname = '" + category + "'", String.class))
-        );
-        return new ArrayList<>(resultSet);
-    }
-
     public double getSumByAddressListAndCategoryList(List<String> addressList, List<String> categoryList) {
         double sum = 0;
         List<Double> partialSumList = new ArrayList<>();
-        addressList.stream().forEach(address ->
-                categoryList.stream().forEach(category ->
+        addressList.forEach(address ->
+                categoryList.forEach(category ->
                         partialSumList.add(jdbcTemplate.queryForObject(
                                 "SELECT sum(od.amount * p.price) subprice FROM public.orderdetail od " +
                                         "JOIN public.product p " +
@@ -178,6 +163,6 @@ public class PostgresDAO implements GroceryStoreDao {
         queryList.add("INSERT INTO public.orderdetail VALUES (29, 16, 8, 7) ON CONFLICT DO NOTHING");
 
 
-        queryList.stream().forEach(query -> jdbcTemplate.update(query));
+        queryList.forEach(query -> jdbcTemplate.update(query));
     }
 }

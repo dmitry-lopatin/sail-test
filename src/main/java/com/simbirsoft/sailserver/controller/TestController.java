@@ -15,27 +15,24 @@ import com.simbirsoft.sailserver.dao.PostgresDAO;
 public class TestController {
 
     @Autowired
-    PostgresDAO postgresDAO;
+    private PostgresDAO postgresDAO;
 
     @RequestMapping(value = "/getAllCategories", method = RequestMethod.GET, produces = "application/json")
     @ResponseBody
     public List<String> getAllCategories() {
-        List<String> response = postgresDAO.getAllCategories();
-        return response;
+        return postgresDAO.getAllCategories();
     }
 
     @RequestMapping(value = "/getAllAddresses", method = RequestMethod.GET, produces = "application/json")
     @ResponseBody
     public List<String> getAllAddresses() {
-        List<String> response = postgresDAO.getAllAddresses();
-        return response;
+        return postgresDAO.getAllAddresses();
     }
 
     @RequestMapping(value = "/getCategoriesByAddressList", method = RequestMethod.GET, produces = "application/json")
     @ResponseBody
     public List<String> getCategoriesByAddressList(String[] addresses) {
-        List<String> response = postgresDAO.getCategoriesByAddressList(Arrays.asList(addresses));
-        return response;
+        return postgresDAO.getCategoriesByAddressList(Arrays.asList(addresses));
     }
 
     @RequestMapping(value = "/getSumByAddressesAndCategories", method = RequestMethod.GET, produces = "application/json")
@@ -43,7 +40,6 @@ public class TestController {
     public Double getSumByAddressListAndCategoryList(String[] addresses, String[] categories) {
         List<String> addressList = addresses == null ? getAllAddresses() : Arrays.asList(addresses);
         List<String> categoryList = categories == null ? getAllCategories() : Arrays.asList(categories);
-        Double response = postgresDAO.getSumByAddressListAndCategoryList(addressList, categoryList);
-        return response;
+        return postgresDAO.getSumByAddressListAndCategoryList(addressList, categoryList);
     }
 }
