@@ -42,7 +42,7 @@ public class PostgresDAO implements GroceryStoreDao {
                                 "JOIN public.orderdetail od " +
                                 "ON p.productid = od.productid " +
                                 "JOIN public.order o " +
-                                "ON od.orderid = o.orderid WHERE o.shopaddress =?", String.class, new Object[] {address}))
+                                "ON od.orderid = o.orderid WHERE o.shopaddress =?", String.class, address))
         );
         return new ArrayList<>(resultSet);
     }
