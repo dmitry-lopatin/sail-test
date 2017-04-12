@@ -1,4 +1,4 @@
-package com.simbirsoft.sailserver.dao;
+package com.sailserver.dao;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.simbirsoft.sailserver.controller;
+package com.sailserver.controller;
 
 import java.util.Arrays;
 import java.util.List;
@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.simbirsoft.sailserver.dao.PostgresDAO;
+import com.sailserver.dao.PostgresDAO;
 
 @Controller
 public class TestController {
