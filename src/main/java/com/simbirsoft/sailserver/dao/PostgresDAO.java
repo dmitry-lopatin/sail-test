@@ -82,7 +82,7 @@ public class PostgresDAO implements GroceryStoreDao {
         queryList.add("INSERT INTO public.category VALUES (1, 'meat', '') ON CONFLICT DO NOTHING");
         queryList.add("INSERT INTO public.category VALUES (2, 'bakery', '') ON CONFLICT DO NOTHING");
         queryList.add("INSERT INTO public.category VALUES (3, 'dairy', '') ON CONFLICT DO NOTHING");
-        queryList.add("INSERT INTO public.category VALUES (4, 'species', '') ON CONFLICT DO NOTHING");
+        queryList.add("INSERT INTO public.category VALUES (4, 'spices', '') ON CONFLICT DO NOTHING");
 
         queryList.add("CREATE TABLE IF NOT EXISTS public.product ( " +
                 "productid serial NOT NULL, " +
