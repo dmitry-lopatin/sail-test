@@ -42,7 +42,7 @@ public class PostgresDAO implements GroceryStoreDao {
                                 "JOIN public.orderdetail od " +
                                 "ON p.productid = od.productid " +
                                 "JOIN public.order o " +
-                                "ON od.orderid = o.orderid WHERE o.shopaddress =?", String.class, address))
+                                "ON od.orderid = o.orderid WHERE o.shopaddress = ?", String.class, address))
         );
         return new ArrayList<>(resultSet);
     }
@@ -59,7 +59,7 @@ public class PostgresDAO implements GroceryStoreDao {
                                         "JOIN public.order o " +
                                         "ON od.orderid = o.orderid " +
                                         "JOIN public.category c " +
-                                        "ON p.categoryid = c.categoryid WHERE o.shopaddress = '" + address + "'AND c.categoryname = '" + category + "'", Double.class))
+                                        "ON p.categoryid = c.categoryid WHERE o.shopaddress = ? AND c.categoryname = ?", Double.class, new Object[] {address, category}))
                 )
         );
         for (Object d : partialSumList) {
